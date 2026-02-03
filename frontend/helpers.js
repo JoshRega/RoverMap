@@ -1,5 +1,6 @@
 import { ACTIVE_BUTTON_TEXT, INACTIVE_BUTTON_TEXT } from './constants.js';
-
+import { pathLayer,circleLayer,pointLayer, map } from './map.js';
+ 
 // UI Helpers
 export const toggleActivateButton = (button, active) => {
     if (active) {
@@ -97,6 +98,8 @@ export const addWayPoint = (map, pathMarkers) => {
     if (isConfirmed) {
         const marker = L.marker([lat, lng]).addTo(map);
         pathMarkers.push(marker);
+        pointLayer.addLayer(marker);
+       
     }
 };
 
@@ -105,4 +108,27 @@ export const removeWayPoint = (map, pathMarkers) => {
 
     const marker = pathMarkers.pop();
     map.removeLayer(marker);
+    pointLayer.clearLayers();
 };
+
+export const hideAllElements = ()=>{
+    map.removeLayer(pointLayer);
+    map.removeLayer(pathLayer);
+    map.removeLayer(circleLayer);
+    
+    
+}
+export const showAllElements = ()=>{
+    map.addLayer(pointLayer);
+    map.addLayer(pathLayer);
+    map.addLayer(circleLayer);
+}
+
+
+document.querySelector('#hideElementsCheckbox').addEventListener('change', e=>{
+    if(e.target.checked){
+        hideAllElements();
+    }else{
+         showAllElements();
+    }
+})

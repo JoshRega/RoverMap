@@ -47,8 +47,10 @@ window.onload = () => {
     });
 
     window.addWayPoint = () => {
-        addWayPoint(map, pathMarkers);
+       addWayPoint(map, pathMarkers);
+    
     };
+     
 
     window.removeWayPoint = () => {
         removeWayPoint(map, pathMarkers);
