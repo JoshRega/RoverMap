@@ -1,4 +1,4 @@
-import { map } from './map.js';
+import { map, circleLayer } from './map.js';
 import { toggleActivateButton } from './helpers.js';
 
 let circles = [];
@@ -7,6 +7,8 @@ let selectedCircle = null;
 let isResizing = false;
 let resizeHandle;
 let activeTool = "none";
+
+
 
 let circleList = document.getElementById('circleList');
 let createCircleButton = document.getElementById('toggleCircleButton');
@@ -17,11 +19,14 @@ export const toggleCircles = () => {
 };
 
 export const clearCircles = () => {
+    
     circles.forEach(circle => circle.remove());
     labels.forEach(label => label.remove());
+    
     circles = [];
     labels = [];
     updateCircleList();
+    circleLayer.clearLayers();
 };
 
 export function circleOnPoint() {
@@ -68,6 +73,9 @@ map.on('mousedown', function (e) {
             permanent: true, className: "circleLabel", direction: 'top', offset: [-15, 20]
         }).addTo(map);
         labels.push(marker);
+        
+        circleLayer.addLayer(marker);
+        circleLayer.addLayer(selectedCircle);
 
         isResizing = true;
         resizeHandle = e.latlng;

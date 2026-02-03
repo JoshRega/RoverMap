@@ -1,4 +1,4 @@
-import { map } from './map.js';
+import { map, pathLayer } from './map.js';
 import { toggleActivateButton } from './helpers.js';
 
 let pathMarkers = [];
@@ -20,14 +20,17 @@ export const clearPaths = () => {
     pathMarkers = [];
     polyLine.setLatLngs([]);
     pointsList.innerHTML = '<h2>Marker List</h2><p>Empty...</p>';
+    pathLayer.clearLayers();
 };
 
 map.on('mousedown', function (e) {
     if (activeTool === 'markerDraw') {
         let newMarker = new L.marker(e.latlng).addTo(map);
         pathMarkers.push(newMarker);
-        polyLine.setLatLngs(pathMarkers.map(m => [m._latlng.lat, m._latlng.lng]));
-
+        
+        let line = polyLine.setLatLngs(pathMarkers.map(m => [m._latlng.lat, m._latlng.lng]));
+        pathLayer.addLayer(newMarker);
+        pathLayer.addLayer(line);
         pointsList.innerHTML = '<h2>Marker List</h2>';
         pointsList.innerHTML += pathMarkers.map(m => `<p>${m._latlng.lat} ${m._latlng.lng}</p>`).join('');
     }

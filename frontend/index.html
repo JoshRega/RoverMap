@@ -19,11 +19,17 @@
         <div id="tools" class="section">
             <h2 class="section-title">Tools</h2>
             <p id="tool-reminder">Click a tool's button to enable it.</p>
+            <div id="globalTools">
+		        <h3>Global Tools:</h3>
+                <input type ="checkbox" id="hideElementsCheckbox"> <label for="toggleHideElements">Hide All Map Elements</label>
+		        <br>
+		        <br>
+	        </div>	
 
             <div id="circleTools">
                 <h3>Circle Tools:</h3>
                 <button onClick="toggleCircles()" id="toggleCircleButton"
-                    class="deactivated-tool-button">INACTIVE</button>
+                 class="deactivated-tool-button">INACTIVE</button>
                 <br>
                 <button onClick="clearCircles()" id="clearCircleButton">CLEAR CIRCLES</button>
                 <br>
