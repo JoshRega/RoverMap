@@ -2,6 +2,7 @@ import { map } from './map.js';
 import { toggleActivateButton } from './helpers.js';
 
 let pathMarkers = [];
+let pointMarkers = [];
 let activeTool = "none";
 let polyLine = new L.polyline([], {
     color: 'red', weight: 3, opacity: 0.5, smoothFactor: 1

@@ -105,4 +105,8 @@ export const removeWayPoint = (map, pathMarkers) => {
 
     const marker = pathMarkers.pop();
     map.removeLayer(marker);
+<<<<<<< Updated upstream
+=======
+    //pointLayer.clearLayers(); <-only line that caused issue #28 Am scared to delete incase it breaks something
+>>>>>>> Stashed changes
 };
